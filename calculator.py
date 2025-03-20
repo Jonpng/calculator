@@ -1,3 +1,12 @@
+import tkinter
+
+from tkinter import *
+root = Tk()
+w = Label(root, text='Calculator')
+w.pack()
+root.mainloop()
+
+
 #function for addition
 def add(num1, num2):
     return num1 + num2

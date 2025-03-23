@@ -1,56 +1,66 @@
-import tkinter
-
 from tkinter import *
-root = Tk()
-w = Label(root, text='Calculator')
-w.pack()
-root.mainloop()
 
+# import everything from tkinter module
+expression = ""
 
-#function for addition
-def add(num1, num2):
-    return num1 + num2
+# Function to update expression 
+# in the text entry box
+def press(num):
 
-#function for subtraction
-def subtract(num1, num2):
-    return num1 - num2
+    # point out the global expression variable 
+    global expression
 
-#funtcion for division
-def divide(num1, num2):
-    return num1 / num2
+    # concatenation of string 
+    expression = expression + str(num)
 
-#function for multiplication
-def multiply(num1, num2):
-    return num1 * num2
+    # update the expression by using set method 
+    equation.set(expression)
 
+# Function to evaluate the final expression
+def equalpress():
+    try:
 
-while True: #Ensures the code starts over after being used
-    print("Select Operation: \n"
-            "1. Add\n"
-            "2. Subtract\n"
-            "3. Multiply\n"
-            "4. Divide\n")
+        global expression
 
-    select = int(input("Select operation form 1, 2, 3, 4: "))
+        total = str(eval(expression))
 
-    number_1 = int(input("Enter first number: "))
-    number_2 = int(input("Enter second number: "))
+        equation.set(total)
 
-    if select == 1:
-        print(number_1, "+", number_2, "=",
-                        add(number_1, number_2))
-        
-    elif select == 2:
-        print(number_1, "-", number_2, "=",
-                        subtract(number_1, number_2))
+        expression = ""
 
-    elif select == 3:
-        print(number_1, "*", number_2, "=",
-                        multiply(number_1, number_2))
-        
-    elif select == 4:
-        print(number_1, "/", number_2, "=",
-                        divide(number_1, number_2))
+    except:
 
-    else:
-        print("Invalid Input.")
+        equation.set(" error ")
+        expression = ""
+
+#Function to clear the contents of text entry box 
+def clear():
+    global expression
+    expression = ""
+    equation.set("")
+
+#driver code
+if __name__ == "__main__":
+    #create the GUI window
+    gui = Tk()
+
+     # set the background colour of GUI window
+    gui.configure(background="light green")
+
+    # set the title of GUI window 
+    gui.title("Calculator")
+
+    # set the configuration of GUI window 
+    gui.geometry("270x150")
+
+    # StringVar() is the variable class we create an instance of this class
+    equation = StringVar()
+
+    # create the text entry box for showing the expression 
+    expression_field = Entry(gui, textvariable=equation)
+
+    # grid method is used for placing the widgets at respective positions in table like structure
+    expression_field.grid(columspan=4, ipadx=70)
+
+    
+

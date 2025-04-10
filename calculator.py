@@ -51,7 +51,7 @@ if __name__ == "__main__":
     gui.title("Calculator")
 
     # set the configuration of GUI window 
-    gui.geometry("270x150")
+    gui.geometry("265x175")
 
     # StringVar() is the variable class we create an instance of this class
     equation = StringVar()
@@ -132,6 +132,14 @@ if __name__ == "__main__":
     Decimal= Button(gui, text='.', fg='white', bg='grey40',
                     command=lambda: press('.'), height=1, width=7)
     Decimal.grid(row=5, column=2)
+
+    exponent = Button(gui, text=' ^ ', fg='white', bg='grey40',
+                      command=lambda: press("**"), height=1, width=7)
+    exponent.grid(row=1, column=3)
+
+    square = Button(gui, text=' x² ', fg='white', bg='grey40',
+                    command=lambda: press("**2"), height=1, width=7)
+    square.grid(row=1, column=4)
 
     #start the gui
     gui.mainloop()
